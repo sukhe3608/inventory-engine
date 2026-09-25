@@ -1,0 +1,16 @@
+{
+  "name": "@inventory/db",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "echo \"@inventory/db: sql migrations only, nothing to build\"",
+    "typecheck": "echo \"@inventory/db: sql migrations only, nothing to typecheck\"",
+    "lint": "echo \"@inventory/db: sql migrations only, nothing to lint\"",
+    "seed:demo": "node scripts/seed-demo.mjs",
+    "test:isolation": "node scripts/isolation-test.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.4"
+  }
+}

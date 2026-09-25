@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Deep dark teal neutrals (warm dark slate) */
+  --color-slate-50: #faf7f1;
+  --color-slate-100: #f1ece1;
+  --color-slate-200: #e4dccb;
+  --color-slate-300: #d0c6af;
+  --color-slate-400: #b0a68f;
+  --color-slate-500: #8c8471;
+  --color-slate-600: #67604f;
+  --color-slate-700: #48433a;
+  --color-slate-800: #2e2c27;
+  --color-slate-900: #16201f;
+  --color-slate-950: #0d1f1d;
+
+  /* Muted green */
+  --color-emerald-50: #f0f6f0;
+  --color-emerald-100: #dceade;
+  --color-emerald-200: #bcd6c1;
+  --color-emerald-300: #93ba9c;
+  --color-emerald-400: #6a9e78;
+  --color-emerald-500: #4d8a63;
+  --color-emerald-600: #3c7152;
+  --color-emerald-700: #2f5a42;
+
+  /* Orange / yellow accents */
+  --color-amber-50: #fef6e9;
+  --color-amber-100: #fbe9cd;
+  --color-amber-200: #f6d49c;
+  --color-amber-300: #f0ba66;
+  --color-amber-400: #e9a141;
+  --color-amber-500: #dd8426;
+  --color-amber-600: #c16d1a;
+  --color-amber-700: #9c5515;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: #faf7f1;
+  color: #16201f;
+  background-image:
+    linear-gradient(to right, rgba(18, 63, 58, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(18, 63, 58, 0.05) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(18, 63, 58, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(18, 63, 58, 0.05) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  background-color: #fffdf9;
+  border: 1px solid #e4dccb;
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px rgba(13, 31, 29, 0.05), 0 8px 24px -16px rgba(13, 31, 29, 0.12);
+  animation: card-in 300ms ease-out both;
+}
+
+.panel-dark {
+  background-color: #0d1f1d;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px -16px rgba(13, 31, 29, 0.5);
+  animation: card-in 300ms ease-out both;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  color: #9db6ad;
+  transition: background-color 150ms ease, color 150ms ease, transform 150ms ease;
+  text-decoration: none;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #f4f1e8;
+  transform: translateX(2px);
+}
+
+.sidebar-link[aria-current="page"] {
+  background-color: #f4f1e8;
+  color: #0d1f1d;
+  font-weight: 600;
+}
+
+.table-row:hover {
+  background-color: #faf7f1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .panel-dark {
+    animation: none;
+  }
+  .sidebar-link {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* Printable bill: hide app chrome, show only the bill sheet */
+.bill-sheet {
+  background-color: #ffffff;
+  border: 1px solid #e4dccb;
+  border-radius: 1rem;
+  padding: 1.75rem;
+  color: #16201f;
+}
+
+@media print {
+  html,
+  body {
+    height: auto;
+    background: #ffffff !important;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .bill-print-root,
+  .bill-print-root * {
+    visibility: visible;
+  }
+  .bill-print-root {
+    position: absolute;
+    inset: 0;
+    padding: 0;
+  }
+  .bill-sheet {
+    border: none;
+    border-radius: 0;
+  }
+}
