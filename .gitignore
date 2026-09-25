@@ -16,7 +16,7 @@ dist/
 .vercel/
 
 # render
-render.yaml
+render.yaml.bak
 
 # supabase
 supabase/.branches

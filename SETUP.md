@@ -1,5 +1,21 @@
 # Free-Tier Deployment Guide
 
+> **Quick start:** the repo already ships with `vercel.json` (frontend root = `apps/web`)
+> and `render.yaml` (API blueprint). Connect GitHub → Vercel and GitHub → Render, set the
+> env vars listed below, and both deploy automatically.
+
+## Fast deploy with Vercel + Render (free)
+
+1. Push this repo to GitHub.
+2. **Vercel** (free): `vercel.com` → *Add New* → *Project* → import the repo.
+   Root directory `apps/web` is auto-detected. Set the env vars from [§5](#5-deploy-frontend-vercel).
+3. **Render** (free): `render.com` → *New* → *Blueprint* → pick the repo (`render.yaml`).
+   The `sync: false` env vars must be added in the service settings — see [§4](#4-deploy-backend-api-render).
+4. **Supabase** (free): database + auth already live; run the migrations in [§2](#2-run-migrations).
+5. Open the Vercel URL and sign in with the demo account (below) or create a fresh one.
+
+---
+
 ## Prerequisites
 
 - [Supabase](https://supabase.com) account (free plan)
@@ -56,6 +72,23 @@ npm run seed:demo
 ```
 
 This creates two demo tenants (`Acme Fashion`, `GreenLeaf Grocers`) with test users and prints API keys and widget keys.
+
+To create the **fresh end-to-end demo tenant** (`Demo Store`) with products, stock, GST billing config,
+and 5 sample orders:
+
+```bash
+node packages/db/scripts/seed-demo-fresh.mjs
+```
+
+Fresh demo credentials:
+
+| Item | Value |
+|---|---|
+| Login | `demo.owner@example.in` |
+| Password | `Demo@2026!Store` |
+| Tenant | `Demo Store` (GSTIN `27ABCDE1234F1Z5`, UPI `demo@okhdfcbank`, 18% tax) |
+| Widget key | `demo-store` |
+| API key | generated at seed time (printed to console) |
 
 To run the isolation test:
 ```bash
